@@ -17,7 +17,7 @@ Once you are on the Remix website, create a new file by clicking on the "+" icon
 ```solidity
 
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.26;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.0.0/contracts/token/ERC20/ERC20.sol";
 
@@ -29,7 +29,7 @@ contract Mytoken is ERC20 {
         _mint(owner , 10000);
     }
 
-    function mintToken(address to , uint amount) public
+        function mintToken(address to , uint amount) public
         {
             require(msg.sender == owner , "Only owner can mint.");
             uint bal = balanceOf(owner);
@@ -41,15 +41,22 @@ contract Mytoken is ERC20 {
         {
             _burn(Of , amount);
         }
+
+        function TransferToken(address to , uint amount) public 
+        {
+            require(balanceOf(msg.sender) >= amount , "transaction failed");
+            _transfer(msg.sender , to , amount);
+        }
+
 }
 
 ```
 
-To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.13" (or another compatible version), and then click on the "Compile ERC20_tokens.sol" button.
+To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.26" (or another compatible version), and then click on the "Compile ERC20_tokens.sol" button.
 
 Once the code is compiled, you can deploy the contract by clicking on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "Mytoken" contract from the dropdown menu, and then click on the "Deploy" button.
 
-Once the contract is deployed, you can interact with it by calling the multiple functions like burnToken and mintToken. Click on the "Mytoken" contract in the left-hand sidebar, and then click on the "mintToken" function, which will aloow thw owner to send a specific amount of token to the specific address and another function is "burnToken" function, which will aloow any address to burn their tokens. when this contratc is deployed, the currect account address will become the owner of the contract and will have 10000 amount of tokens(JD) and thus will only be allowed to mint the tokens by using the 'mintToken" function. And thus you can interact with multiple accounts and share them your tokens.
+Once the contract is deployed, you can interact with it by calling the multiple functions like burnToken and mintToken. Click on the "Mytoken" contract in the left-hand sidebar, and then click on the "mintToken" function, which will allow thw owner to send a specific amount of token to the specific address and another function is "burnToken" function, which will allow any address to burn their tokens. when this contract is deployed, the currect account address will become the owner of the contract and will have 10000 amount of tokens(JD) and thus will only be allowed to mint the tokens by using the 'mintToken" function. And thus you can interact with multiple accounts and share them your tokens.
 
 ## Authors
 
